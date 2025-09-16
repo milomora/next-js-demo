@@ -9,7 +9,8 @@ import { PokemonInfoType, PokemonListResponse } from '@/types/pokemon-types';
  *
  */
 
-export async function getPokemonListFn(limit: number, offset: number): Promise<PokemonListResponse> {
+export async function getPokemonListFn(page: number, limit: number): Promise<PokemonListResponse> {
+  const offset = (page - 1) * limit;
   const response = await fetch(`${POKEMON_API}/pokemon?limit=${limit}&offset=${offset}`);
   const list: PokemonListResponse = await response.json();
 

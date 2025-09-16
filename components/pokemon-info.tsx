@@ -20,7 +20,7 @@ type PokemonInfoProps = {
 
 export default function PokemonInfo({ selectedPokemon }: PokemonInfoProps) {
   const { isPending, error, data } = useQuery<PokemonInfoType>({
-    queryKey: [`info-${selectedPokemon}`],
+    queryKey: ['info', selectedPokemon],
     queryFn: () => getPokemonInfoFn(selectedPokemon),
   });
 

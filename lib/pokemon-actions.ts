@@ -12,9 +12,7 @@ import { PokemonInfoType, PokemonListResponse } from '@/types/pokemon-types';
  */
 
 export async function getPokemonList(page: number, limit: number): Promise<PokemonListResponse> {
-  const offset = (page - 1) * limit;
-
-  return getPokemonListFn(limit, offset);
+  return getPokemonListFn(page, limit);
 }
 
 export async function getPokemonInfo(name: string): Promise<PokemonInfoType> {
