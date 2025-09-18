@@ -36,3 +36,21 @@ export type PokemonInfoType = {
     };
   }[];
 };
+
+export type PokemonTypesResponse = ListBaseResponse & {
+  results: PokemonType[];
+};
+
+export type PokemonType = {
+  name: string;
+  url: string;
+};
+
+export type PokemonTypeInfo = {
+  name: string;
+  id: number;
+  pokemon: {
+    slot: number;
+    pokemon: PokemonListItem;
+  }[];
+};

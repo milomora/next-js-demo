@@ -3,6 +3,7 @@ import { DEFAULT_LIMIT } from '@/constants/list-constants';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import ListWithHydration from './list-hydration';
 import { getPokemonListFn } from '@/lib/pokemon-api-functions';
+import Filters from '@/components/filters';
 
 type ListProps = {
   searchParams: Promise<{ page?: string }>;
@@ -13,7 +14,7 @@ export default async function List({ searchParams }: ListProps) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['list', page],
+    queryKey: ['list', page, []],
     queryFn: () => getPokemonListFn(page, DEFAULT_LIMIT),
   });
 
@@ -22,6 +23,8 @@ export default async function List({ searchParams }: ListProps) {
       <h1 className="text-2xl text-center my-5">
         <strong>Pokemon List</strong> (Using Hydration)
       </h1>
+
+      <Filters />
 
       <div className="grid grid-cols-3 border-blue-500 border-t border-b">
         <HydrationBoundary state={dehydrate(queryClient)}>

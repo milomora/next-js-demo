@@ -1,7 +1,7 @@
 'use server';
 
-import { getPokemonInfoFn, getPokemonListFn } from '@/lib/pokemon-api-functions';
-import { PokemonInfoType, PokemonListResponse } from '@/types/pokemon-types';
+import { getPokemonInfoFn, getPokemonListFn, getPokemonTypesFn } from '@/lib/pokemon-api-functions';
+import { PokemonInfoType, PokemonListResponse, PokemonTypesResponse } from '@/types/pokemon-types';
 
 /**
  *
@@ -17,4 +17,8 @@ export async function getPokemonList(page: number, limit: number): Promise<Pokem
 
 export async function getPokemonInfo(name: string): Promise<PokemonInfoType> {
   return getPokemonInfoFn(name);
+}
+
+export async function getPokemonTypes(): Promise<PokemonTypesResponse> {
+  return getPokemonTypesFn();
 }
